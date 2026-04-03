@@ -33,6 +33,7 @@ app.use(cors({
 }));
 
 // Body parser
+app.use(express.json());
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
@@ -63,7 +64,7 @@ app.get('/api/health', (req, res) => {
 
 // Root endpoint
 app.get('/', (req, res) => {
-  res.json({ message: 'Backend is running' });
+  res.send('API is running');
 });
 
 // 404 handler
