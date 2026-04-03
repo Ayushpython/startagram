@@ -35,7 +35,8 @@ const AuthForm = ({ type = 'login' }) => {
       }
       navigate('/home');
     } catch (err) {
-      setError(err.error || 'Authentication failed');
+      console.error('FULL AUTH ERROR:', err);
+      setError(err.error || err.message || 'Authentication failed');
     }
   };
 

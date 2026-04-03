@@ -4,7 +4,7 @@ import axios from 'axios';
 // Development:  http://localhost:5000/api
 // Production:   https://your-domain.com/api  OR  /api (if same-origin)
 const API_BASE_URL =
-  import.meta.env.VITE_API_URL || '/api';
+  import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
