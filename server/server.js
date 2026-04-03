@@ -114,6 +114,25 @@ if (process.env.NODE_ENV === 'production') {
     app.get('*', (req, res) => {
       res.sendFile(path.join(clientBuildPath, 'index.html'));
     });
+  } else {
+    // API-only deployment (e.g. Railway) — no client build present
+    app.get('/', (req, res) => {
+      res.json({
+        message: 'Idea Marketplace API Server',
+        status: 'running',
+        api: '/api',
+        health: '/api/health',
+        frontend: process.env.CORS_ORIGIN || 'Not configured',
+      });
+    });
+
+    app.get('*', (req, res) => {
+      res.status(404).json({
+        error: 'This is the API server. The frontend is hosted separately.',
+        frontend: process.env.CORS_ORIGIN || 'Not configured',
+        api: '/api',
+      });
+    });
   }
 } else {
   // Dev root endpoint
