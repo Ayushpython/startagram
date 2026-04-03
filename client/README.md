@@ -26,7 +26,7 @@ cp .env.example .env
 
 2. Update the API URL if your backend is running on a different host:
 ```
-REACT_APP_API_URL=http://localhost:5000/api
+VITE_API_URL=http://localhost:5000/api
 ```
 
 ## Running Locally
@@ -153,7 +153,7 @@ npm run dev
 
 # Terminal 2: Frontend
 cd frontend
-npm start
+npm run dev
 ```
 
 Frontend: `http://localhost:3000`
@@ -163,7 +163,7 @@ Backend: `http://localhost:5000`
 
 ### "Cannot reach backend"
 - Ensure backend is running on `http://localhost:5000`
-- Check `.env` file has correct `REACT_APP_API_URL`
+- Check `.env` file has correct `VITE_API_URL`
 
 ### "Login fails"
 - Check backend is responding: `curl http://localhost:5000/api/health`

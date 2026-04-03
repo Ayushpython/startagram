@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-// REACT_APP_API_URL is set in .env (baked into the build at compile time)
+// VITE_API_URL is set in .env (baked into the build at compile time)
 // Development:  http://localhost:5000/api
 // Production:   https://your-domain.com/api  OR  /api (if same-origin)
 const API_BASE_URL =
-  process.env.REACT_APP_API_URL || '/api';
+  import.meta.env.VITE_API_URL || '/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
