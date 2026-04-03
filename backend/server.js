@@ -63,7 +63,7 @@ app.get('/api/health', (req, res) => {
 
 // Root endpoint
 app.get('/', (req, res) => {
-  res.json({ message: 'Idea Marketplace API - v1.0.0' });
+  res.json({ message: 'Backend is running' });
 });
 
 // 404 handler
