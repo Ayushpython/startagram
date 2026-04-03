@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { marketplaceAPI } from '../api/client';
 import styles from './Marketplace.module.css';
@@ -12,11 +12,7 @@ const Marketplace = () => {
     sortBy: 'newest',
   });
 
-  useEffect(() => {
-    fetchBlueprints();
-  }, [filters]);
-
-  const fetchBlueprints = async () => {
+  const fetchBlueprints = useCallback(async () => {
     setLoading(true);
     try {
       const response = await marketplaceAPI.search({
@@ -31,7 +27,11 @@ const Marketplace = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filters]);
+
+  useEffect(() => {
+    fetchBlueprints();
+  }, [fetchBlueprints]);
 
   return (
     <div className={styles.container}>

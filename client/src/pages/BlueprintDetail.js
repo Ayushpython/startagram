@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { blueprintsAPI, commentsAPI, transactionsAPI, validationAPI } from '../api/client';
 import { useAuth } from '../context/AuthContext';
@@ -6,7 +6,7 @@ import styles from './BlueprintDetail.module.css';
 
 const BlueprintDetail = () => {
   const { id } = useParams();
-  const { user, token } = useAuth();
+  const { token } = useAuth();
   const [blueprint, setBlueprint] = useState(null);
   const [comments, setComments] = useState([]);
   const [validation, setValidation] = useState(null);
@@ -14,11 +14,7 @@ const BlueprintDetail = () => {
   const [loading, setLoading] = useState(true);
   const [purchasing, setPurchasing] = useState(false);
 
-  useEffect(() => {
-    fetchData();
-  }, [id]);
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     try {
       const [bpResponse, commentsResponse] = await Promise.all([
@@ -33,7 +29,7 @@ const BlueprintDetail = () => {
       try {
         const validationResponse = await validationAPI.getValidation(id);
         setValidation(validationResponse.data);
-      } catch (error) {
+      } catch (_err) {
         // Validation might not exist yet
       }
     } catch (error) {
@@ -41,7 +37,11 @@ const BlueprintDetail = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   const handleCommentSubmit = async (e) => {
     e.preventDefault();

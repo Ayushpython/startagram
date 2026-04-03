@@ -76,15 +76,45 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// API root — info endpoint
+app.get('/api', (req, res) => {
+  res.json({
+    message: 'Idea Marketplace API',
+    version: '1.0.0',
+    health: '/api/health',
+    docs: {
+      auth: '/api/auth',
+      users: '/api/users',
+      blueprints: '/api/blueprints',
+      marketplace: '/api/marketplace',
+      comments: '/api/comments',
+      collaboration: '/api/collaboration',
+      wallet: '/api/wallet',
+      transactions: '/api/transactions',
+      validation: '/api/validation',
+      chat: '/api/chat',
+    },
+  });
+});
+
+// API 404 — must come BEFORE the static file catch-all
+app.all('/api/*', (req, res) => {
+  res.status(404).json({ error: 'API route not found' });
+});
+
 // ---------- Production: serve React build ----------
 if (process.env.NODE_ENV === 'production') {
+  const fs = require('fs');
   const clientBuildPath = path.join(__dirname, '..', 'client', 'build');
-  app.use(express.static(clientBuildPath));
 
-  // Any request that doesn't match an API route → serve React index.html
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(clientBuildPath, 'index.html'));
-  });
+  if (fs.existsSync(clientBuildPath)) {
+    app.use(express.static(clientBuildPath));
+
+    // Any non-API request → serve React index.html
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(clientBuildPath, 'index.html'));
+    });
+  }
 } else {
   // Dev root endpoint
   app.get('/', (req, res) => {
@@ -92,20 +122,16 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-// 404 handler (API routes only in production)
-app.use((req, res) => {
-  res.status(404).json({ error: 'Route not found' });
-});
-
 // Error handler
-app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(err.status || 500).json({
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, _next) => {
+  console.error(err.stack || err);
+  const status = err.status || 500;
+  res.status(status).json({
     error:
-      process.env.NODE_ENV === 'production'
+      process.env.NODE_ENV === 'production' && status === 500
         ? 'Internal server error'
         : err.message || 'Internal server error',
-    status: err.status || 500,
   });
 });
 

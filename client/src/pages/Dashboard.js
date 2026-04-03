@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { blueprintsAPI, walletAPI } from '../api/client';
 import { useAuth } from '../context/AuthContext';
 import styles from './Dashboard.module.css';
@@ -9,13 +9,7 @@ const Dashboard = () => {
   const [wallet, setWallet] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (user) {
-      fetchData();
-    }
-  }, [user]);
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     try {
       const [blueprintsResponse, walletResponse] = await Promise.all([
@@ -30,7 +24,13 @@ const Dashboard = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user]);
+
+  useEffect(() => {
+    if (user) {
+      fetchData();
+    }
+  }, [user, fetchData]);
 
   if (loading) return <div className={styles.container}>Loading...</div>;
 
