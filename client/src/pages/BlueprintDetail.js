@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { blueprintsAPI, commentsAPI, transactionsAPI, validationAPI } = '../api/client';
+import { blueprintsAPI, commentsAPI, transactionsAPI, validationAPI } from '../api/client';
 import { useAuth } from '../context/AuthContext';
 import styles from './BlueprintDetail.module.css';
 

@@ -12,6 +12,9 @@ import MessagesPage from './pages/MessagesPage';
 import ProfilePage from './pages/ProfilePage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
+import Marketplace from './pages/Marketplace';
+import BlueprintDetail from './pages/BlueprintDetail';
+import Dashboard from './pages/Dashboard';
 import { initialPosts } from './data/mockData';
 import useDarkMode from './hooks/useDarkMode';
 
@@ -117,12 +120,15 @@ function AppContent({
         <Sidebar />
 
         <Routes>
-          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/" element={<Navigate to="/home" replace />} />
           <Route path="/home" element={<HomeFeedPage posts={posts} />} />
           <Route path="/explore" element={<ExplorePage posts={posts} />} />
           <Route path="/messages" element={<MessagesPage />} />
           <Route path="/profile" element={<ProfilePage currentUser={currentUser} posts={profilePosts} />} />
-          <Route path="*" element={<Navigate to="/login" replace />} />
+          <Route path="/marketplace" element={<Marketplace />} />
+          <Route path="/blueprint/:id" element={<BlueprintDetail />} />
+          <Route path="/my-blueprints" element={<Dashboard />} />
+          <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>
       </div>
 

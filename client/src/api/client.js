@@ -1,14 +1,10 @@
 import axios from 'axios';
 
-const isLocalHost =
-  typeof window !== 'undefined' &&
-  (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
-
+// REACT_APP_API_URL is set in .env (baked into the build at compile time)
+// Development:  http://localhost:5000/api
+// Production:   https://your-domain.com/api  OR  /api (if same-origin)
 const API_BASE_URL =
-  process.env.REACT_APP_API_URL ||
-  (isLocalHost
-    ? 'http://localhost:5000/api'
-    : 'https://startagram-production.up.railway.app/api');
+  process.env.REACT_APP_API_URL || '/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,

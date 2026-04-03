@@ -1,11 +1,12 @@
 {
-  "name": "idea-marketplace-backend",
+  "name": "idea-marketplace-server",
   "version": "1.0.0",
   "description": "Backend API for Idea Marketplace - Buy, sell, and collaborate on startup blueprints",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
+    "start:prod": "NODE_ENV=production node server.js",
     "test": "jest"
   },
   "keywords": [
