@@ -1,0 +1,108 @@
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.container h1 {
+  margin-bottom: 2rem;
+  color: #10203a;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.9rem;
+  padding: 1.5rem;
+}
+
+.card h3 {
+  margin-top: 0;
+  color: #10203a;
+}
+
+.balance {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #17b26a;
+  margin: 1rem 0;
+}
+
+.section {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.9rem;
+  padding: 1.5rem;
+}
+
+.section h2 {
+  margin-top: 0;
+  color: #10203a;
+  margin-bottom: 1.5rem;
+}
+
+.blueprintsList {
+  display: grid;
+  gap: 1rem;
+}
+
+.blueprintItem {
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.6rem;
+  transition: all 0.2s;
+}
+
+.blueprintItem:hover {
+  border-color: #1264ff;
+  box-shadow: 0 4px 12px rgba(18, 100, 255, 0.1);
+}
+
+.blueprintItem h4 {
+  margin: 0 0 0.5rem;
+  color: #10203a;
+}
+
+.blueprintItem p {
+  margin: 0 0 1rem;
+  color: #4a5d7d;
+  font-size: 0.9rem;
+}
+
+.itemMeta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.status {
+  background: rgba(18, 100, 255, 0.1);
+  color: #1264ff;
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.price {
+  color: #17b26a;
+  font-weight: 600;
+}
+
+.sales {
+  color: #4a5d7d;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

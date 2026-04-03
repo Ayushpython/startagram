@@ -1,0 +1,35 @@
+/* Tailwind-first styling. Kept intentionally minimal. */
+
+body {
+  font-family: 'Sora', 'Segoe UI', sans-serif;
+  background: linear-gradient(145deg, #f3f7ff 0%, #edf8f6 100%);
+  color: #10203a;
+  line-height: 1.6;
+}
+
+a {
+  color: #1264ff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+}
+
+main {
+  min-height: calc(100vh - 80px);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}

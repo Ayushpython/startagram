@@ -1,0 +1,49 @@
+.btn {
+  border: none;
+  border-radius: 0.6rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.primary {
+  background: linear-gradient(130deg, #1264ff, #0047c7);
+  color: white;
+  box-shadow: 0 8px 18px rgba(18, 100, 255, 0.3);
+}
+
+.primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(18, 100, 255, 0.4);
+}
+
+.secondary {
+  background: white;
+  color: #10203a;
+  border: 1px solid #ccc;
+}
+
+.secondary:hover:not(:disabled) {
+  background: #f5f5f5;
+}
+
+.sm {
+  padding: 0.5rem 0.8rem;
+  font-size: 0.875rem;
+}
+
+.md {
+  padding: 0.75rem 1.1rem;
+  font-size: 1rem;
+}
+
+.lg {
+  padding: 1rem 1.5rem;
+  font-size: 1.1rem;
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

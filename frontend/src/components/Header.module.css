@@ -1,0 +1,96 @@
+.header {
+  border-bottom: 1px solid #e0e0e0;
+  background: white;
+  padding: 1rem 0;
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #10203a;
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+.nav a {
+  color: #4a5d7d;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav a:hover {
+  color: #1264ff;
+}
+
+.auth {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.username {
+  font-weight: 600;
+  color: #10203a;
+}
+
+.logoutBtn {
+  background: #fee;
+  color: #c00;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.logoutBtn:hover {
+  background: #fdd;
+}
+
+.link {
+  color: #4a5d7d;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.linkBtn {
+  background: #1264ff;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.linkBtn:hover {
+  background: #0047c7;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-wrap: wrap;
+  }
+
+  .nav {
+    flex-basis: 100%;
+    gap: 1rem;
+  }
+}
