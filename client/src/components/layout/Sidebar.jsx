@@ -12,18 +12,18 @@ const items = [
 
 export default function Sidebar() {
   return (
-    <aside className="hidden h-fit rounded-2xl border border-slate-200 bg-white/80 p-3 shadow-sm backdrop-blur dark:border-slate-800 dark:bg-slate-900/60 lg:block">
-      <nav className="space-y-1">
+    <aside className="hidden lg:block h-fit p-4 glass-card border border-white/10 sticky top-28 bg-[#0a0a0a]">
+      <nav className="space-y-2">
         {items.map((item) => (
           <NavLink
             key={item.to}
             to={item.to}
             className={({ isActive }) =>
               [
-                'block rounded-xl px-4 py-2.5 text-sm font-medium transition',
+                'block px-4 py-3 text-sm font-mono tracking-widest uppercase transition-all duration-300 border-l-2',
                 isActive
-                  ? 'bg-blue-600 text-white'
-                  : 'text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800',
+                  ? 'border-primary bg-white/5 text-primary'
+                  : 'border-transparent text-gray-400 hover:border-gray-500 hover:text-white',
               ].join(' ')
             }
           >

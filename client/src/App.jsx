@@ -16,11 +16,9 @@ import Marketplace from './pages/Marketplace';
 import BlueprintDetail from './pages/BlueprintDetail';
 import Dashboard from './pages/Dashboard';
 import { initialPosts } from './data/mockData';
-import useDarkMode from './hooks/useDarkMode';
 
 function App() {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
-  const { isDark, toggleDarkMode } = useDarkMode();
 
   return (
     <AuthProvider>
@@ -28,8 +26,6 @@ function App() {
         <AppContent
           setIsCreateOpen={setIsCreateOpen}
           isCreateOpen={isCreateOpen}
-          isDark={isDark}
-          toggleDarkMode={toggleDarkMode}
         />
       </BrowserRouter>
     </AuthProvider>
@@ -39,13 +35,11 @@ function App() {
 function AppContent({
   setIsCreateOpen,
   isCreateOpen,
-  isDark,
-  toggleDarkMode,
 }) {
   const { user, token } = useAuth();
   const [posts, setPosts] = useState(initialPosts);
   const location = useLocation();
-  const isAuthRoute = location.pathname === '/login' || location.pathname === '/register';
+  const isAuthRoute = location.pathname === '/login' || location.pathname === '/register' || (!token && location.pathname === '/home');
 
   const currentUser = useMemo(() => {
     if (!user) {
@@ -93,10 +87,12 @@ function AppContent({
 
   if (isAuthRoute) {
     return (
-      <div className="min-h-screen bg-slate-100 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+      <div className="min-h-screen bg-black text-white selection:bg-primary/30">
+        <Navbar currentUser={currentUser} onOpenCreatePost={() => {}} />
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/home" element={<Navigate to="/login" replace />} />
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </div>
@@ -108,15 +104,13 @@ function AppContent({
   }
 
   return (
-    <div className="min-h-screen bg-slate-100 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
+    <div className="min-h-screen bg-black text-white selection:bg-primary/30">
       <Navbar
-        isDark={isDark}
-        onToggleDarkMode={toggleDarkMode}
         onOpenCreatePost={() => setIsCreateOpen(true)}
         currentUser={currentUser}
       />
 
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 pb-24 pt-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:pb-8">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 pb-24 pt-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:pb-8 pt-28">
         <Sidebar />
 
         <Routes>
